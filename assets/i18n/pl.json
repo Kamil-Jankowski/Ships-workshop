@@ -2,18 +2,20 @@
     "APP": {
         "SELECT": "Wybierz język: ",
         "WELCOME": "Ahoj Psubraty!",
-        "TITLE": "Statki: Gra"
+        "TITLE": "Statki - warsztat"
     },
 
     "HOME": {
-        "RULES": "Zasady:",
-        "ONE": "Gracz wygrywa gdy pozbawi przeciwnika wszystkich staków",
-        "TWO": "Strzelasz dopóki nie spudłujesz!",
-        "THREE": "Jedna gra składa się z jednej rozgrywki",
+        "RULES": "Zadania:",
+        "ONE": "Zapoznaj się z kodem i komentarzami do kodu",
+        "TWO": "Zapoznaj się z dokumentacją REST API",
+        "THREE": "Dodaj odpowiednie zależności oraz przygotowany kod",
+        "FOUR": "Dodaj kod odpowiedzialny za usuwanie gracza gdy jest on nieaktywny",
+        "FIVE": "Sprawdź, korzystając z poniższej strony, wprowadzone zmiany",
         "PLAYER_NAME": "Imię gracza",
         "INSTRUCTION": "To jest Twój identyfikator w grze",
         "PLACEHOLDER": "Wprowadź imię",
-        "JOIN": "Dołącz do gry",
+        "JOIN": "Dodaj gracza",
         "FULL": "Pokój zajęty. Spróbuj ponownie później.",
         "NICKNAME_DUPLICATION": "Podany pseudonim jest zajęty! Spróbuj ponownie!",
         "ERROR": "Błąd. Imię powinno się składać z samych liter."
@@ -21,35 +23,7 @@
 
     "WAITING_ROOM": {
         "LIST": "Lista graczy",
-        "WAITING": "Oczekiwanie na dołączenie pozostałych graczy"
-    },
-
-    "GAME": {
-        "INFO": "Informacje",
-        "SHIPS": "Twoje statki",
-        "SHOTS": "Statki przeciwnika",
-        "PLAYER": "Gracz",
-        "END": "Zakończ grę",
-        "TURN": "Strzela: "
-    },
-
-    "END": {
-        "RESTART": "Rozpocznij nową grę",
-        "CREDITS_BY": "Autor zdjęcia",
-        "CREDITS_ON": "w serwisie"
-    },
-
-    "MESSAGES": {
-        "TITLE": "Powiadomienia",
-        "CLEAR": "Wyczyść"
-    },
-
-    "TOAST": {
-        "WIN": "Koniec gry - Wygrałeś!",
-        "LOOSE": "Koniec gry - Przegrałeś!",
-        "HIT": "Trafiony!",
-        "MISS": "Pudło!",
-        "YOUR_TURN": "Twoja kolej. Strzelaj!",
-        "ENEMY_TURN": "Kolej przeciwnika. Przygotuj się!"
+        "WAITING": "Oczekiwanie na dołączenie pozostałych graczy",
+        "QUIT": "Wyjdź z gry"
     }
 }

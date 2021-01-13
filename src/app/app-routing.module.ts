@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { WaitingRoomComponent } from './waiting-room/waiting-room.component';
-import { GameComponent } from './game/game.component';
-import { LandingComponent } from './landing/landing.component';
 
 /**
  * Router configuration mapping urls to angular components;
@@ -12,10 +10,8 @@ import { LandingComponent } from './landing/landing.component';
  */
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'landing/:type', component: LandingComponent},
   { path: 'home', component: HomeComponent },
   { path: 'waiting-room/:name', component: WaitingRoomComponent },
-  { path: 'game/:name', component: GameComponent},
 ];
 
 @NgModule({

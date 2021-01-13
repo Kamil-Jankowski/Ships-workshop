@@ -2,18 +2,20 @@
     "APP": {
         "SELECT": "Select language: ",
         "WELCOME": "Ahoy Seadogs!",
-        "TITLE": "Ships: The Game"
+        "TITLE": "Ships - workshop"
     },
 
     "HOME": {
         "RULES": "Rules:",
-        "ONE": "Player wins if opponent is out of ships",
-        "TWO": "You shoot until you miss!",
-        "THREE": "One game consists of one match",
+        "ONE": "Familiarise yourself with the code and comments to it",
+        "TWO": "Familiarise yourself with REST API documentation",
+        "THREE": "Add necessary dependencies and prepared code",
+        "FOUR": "Add a code responsible for removing the player when inactive",
+        "FIVE": "Verify, using this service, implemented changes",
         "PLAYER_NAME": "Player name",
         "INSTRUCTION": "This is your in-game identifier",
         "PLACEHOLDER": "Enter your name",
-        "JOIN": "Join the game",
+        "JOIN": "Add player",
         "FULL": "Room is full, please try again later.",
         "NICKNAME_DUPLICATION": "Provided nickname is taken! Try again!",
         "ERROR": "Error. The name should contain only letters."
@@ -21,35 +23,7 @@
 
     "WAITING_ROOM": {
         "LIST": "Players list",
-        "WAITING": "Waiting for others to join"
-    },
-
-    "GAME": {
-        "INFO": "Game info",
-        "SHIPS": "Your ships",
-        "SHOTS": "Enemy ships",
-        "PLAYER": "Player info",
-        "END": "End the game",
-        "TURN": "Turn: "
-    },
-
-    "END": {
-        "RESTART": "Start new game",
-        "CREDITS_BY": "Photo by",
-        "CREDITS_ON": "on"
-    },
-
-    "MESSAGES": {
-        "TITLE": "Messages",
-        "CLEAR": "Clear"
-    },
-
-    "TOAST": {
-        "WIN": "Game over - you've won!",
-        "LOOSE": "Game over - you've lost!",
-        "HIT": "Hit!",
-        "MISS": "Miss!",
-        "YOUR_TURN": "Your turn. Shoot!",
-        "ENEMY_TURN": "Opponent's turn. Brace yourself!"
+        "WAITING": "Waiting for others to join",
+        "QUIT": "Quit"
     }
 }

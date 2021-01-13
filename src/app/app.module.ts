@@ -13,9 +13,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { WaitingRoomComponent } from './waiting-room/waiting-room.component';
-import { GameComponent } from './game/game.component';
 import { AppRoutingModule } from './app-routing.module';
-import { LandingComponent } from './landing/landing.component';
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -29,8 +27,6 @@ export function httpLoaderFactory(http: HttpClient) {
     AppComponent,
     HomeComponent,
     WaitingRoomComponent,
-    GameComponent,
-    LandingComponent
   ],
   imports: [
     BrowserModule,

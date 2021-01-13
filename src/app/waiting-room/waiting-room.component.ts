@@ -17,7 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class WaitingRoomComponent implements OnInit {
 
-  private MAX_NUMBER_OF_PLAYERS_IN_ROOM: number = 2;
+  private MIN_NUMBER_OF_PLAYERS_IN_ROOM: number = 0;
   private subscription: Subscription;
   private sessionPlayer: Player;
   playersInRoom: Player[];
@@ -50,9 +50,13 @@ export class WaitingRoomComponent implements OnInit {
 
   private assignPlayersInRoom(playersInRoom: Player[]) {
     this.playersInRoom = playersInRoom;
-    if (this.MAX_NUMBER_OF_PLAYERS_IN_ROOM == playersInRoom.length) {
-      this.router.navigate(['/game/' + this.sessionPlayer.name]);
+    if (this.MIN_NUMBER_OF_PLAYERS_IN_ROOM == playersInRoom.length) {
+      this.router.navigate(['/home']);
     }
+  }
+
+  delete(player: Player): void {
+    this.playerService.deletePlayer(player.name).subscribe();
   }
   
 }

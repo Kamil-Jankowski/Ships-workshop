@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { NotificationService } from './notification.service';
 import { TranslateService } from '@ngx-translate/core';
 
 /**
@@ -17,7 +16,6 @@ export class AppComponent implements OnInit{
 
   constructor(
     private toastr: ToastrService,
-    private notificationService: NotificationService,
     public translate: TranslateService
     ){
       translate.addLangs(['en', 'pl']);

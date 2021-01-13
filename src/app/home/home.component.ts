@@ -3,8 +3,6 @@ import {Router} from '@angular/router';
 
 import { PlayerService } from '../player.service';
 import { Player } from '../player';
-import { GameService } from '../game.service';
-import { RandomShipPlacementService } from '../random-ship-placement.service';
 import { TranslateService } from '@ngx-translate/core';
 
 /**
@@ -26,8 +24,6 @@ export class HomeComponent implements OnInit {
    * @param router - router to be used
    */
   constructor(private playerService: PlayerService,
-    private randomShipPlacementService: RandomShipPlacementService,
-    private gameService: GameService,
     private translate: TranslateService,
     private router: Router) { }
   
@@ -50,8 +46,7 @@ export class HomeComponent implements OnInit {
       .subscribe(
         () => {
           this.error_message = '';
-          this.randomShipPlacementService.createNewSetOfMapsForGivenPlayer(name).subscribe(
-          () =>{this.router.navigate(['/waiting-room/' + name])})  
+          this.router.navigate(['/waiting-room/' + name])  
         },
         error => { 
           console.log(error); 
@@ -78,7 +73,6 @@ export class HomeComponent implements OnInit {
         error => { 
           console.log(error); 
           this.error_message = error;});
-    this.gameService.deleteAllPlayers().subscribe();
   }
 
 

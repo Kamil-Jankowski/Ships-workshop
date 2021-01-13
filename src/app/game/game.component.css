@@ -1,0 +1,83 @@
+mat-grid-tile {
+    background: lightblue;
+  }
+
+  button {
+    background-color: #eee;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: Arial;
+  }
+
+  .button-blocked,
+  button:disabled {
+    background-color: #eee;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: not-allowed;
+    font-family: Arial;
+  }
+
+  button:hover {
+    background-color: #cfd8dc;
+  }
+
+  .button-hit,
+ button:disabled {
+    background: #F63D3D;
+    font-size: 30px;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: not-allowed;
+  }
+
+  .button-ship,
+  button:disabled {
+    background: #0004ff;
+    font-size: 30px;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: not-allowed;
+  }
+
+  .button-miss,
+  button:disabled {
+    position: relative;
+    left: 194px;
+    top: -32px;
+    background-color: gray !important;
+    color: white;
+    cursor: not-allowed;
+  }
+
+.green {
+    background-color: green;
+}
+.red {
+    background-color: red;
+}
+
+.btn {
+  width: 100%;
+}
+
+.btn-primary {
+    background-color: #df691a;
+  }
+
+  .btn-lg, .btn-group-lg > .btn {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0;
+  }
+
+  .btn-block {
+    display: block;
+    width: 100%;
+  }

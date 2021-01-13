@@ -1,0 +1,42 @@
+<div class="row" style="padding: 2rem">
+    <div class="col-lg-12">
+        <div class="bs-component">
+        
+            <div class="card text-white bg-primary mb-3" style="text-align: center;">
+                <div class="card-body">
+                    <h4 class="card-title">{{'APP.TITLE' | translate}}</h4>
+                    <p class="card-text">{{'HOME.RULES' | translate}}</p>
+                    <ol>
+                        <li>{{'HOME.ONE' | translate}}</li>
+                        <li>{{'HOME.TWO' | translate}}</li>
+                        <li>{{'HOME.THREE' | translate}}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" style="padding: 2rem">
+    <div class="col-lg-6">
+        <div class="bs-component">
+            <form>
+                <fieldset>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">{{'HOME.PLAYER_NAME' | translate}}</label>
+                        <input #playerName type="name" class="form-control" id="name" placeholder="{{'HOME.PLACEHOLDER' | translate}}">
+                        <small id="emailHelp" class="form-text text-muted">{{this.error_message | translate}}</small>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div class="col-lg-4 offset-lg-1" style="padding-top: 2rem;">
+        <p class="bs-component">
+            <a>
+                <button (click)="add(playerName.value)" type="button" class="btn btn-primary btn-lg btn-block">
+                    {{'HOME.JOIN' | translate}}
+                </button>
+            </a> 
+        </p>
+    </div>
+</div> 

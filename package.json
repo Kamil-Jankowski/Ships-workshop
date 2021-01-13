@@ -1,11 +1,11 @@
 {
-  "name": "ships-the-game",
+  "name": "ships-workshop",
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build-ci": "ng build --prod --base-Href=\"https://Kamil-Jankowski.github.io/ShipsFrontend/\" ",
+    "build-ci": "ng build --prod --base-Href=\"https://Kamil-Jankowski.github.io/Ships-workshop\" ",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

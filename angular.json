@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ShipsFrontend": {
+    "Ships-workshop": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ShipsFrontend",
+            "outputPath": "dist/Ships-workshop",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ShipsFrontend:build"
+            "browserTarget": "Ships-workshop:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ShipsFrontend:build:production"
+              "browserTarget": "Ships-workshop:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ShipsFrontend:build"
+            "browserTarget": "Ships-workshop:build"
           }
         },
         "test": {
@@ -110,11 +110,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ShipsFrontend:serve"
+            "devServerTarget": "Ships-workshop:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ShipsFrontend:serve:production"
+              "devServerTarget": "Ships-workshop:serve:production"
             }
           }
         },
@@ -125,7 +125,7 @@
       }
     }
   },
-  "defaultProject": "ShipsFrontend",
+  "defaultProject": "Ships-workshop",
   "cli": {
     "analytics": false
   }

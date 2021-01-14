@@ -5,14 +5,14 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build-ci": "ng build --prod --base-Href=\"https://Kamil-Jankowski.github.io/Ships-workshop\" ",
+    "build-ci": "ng build --prod --base-Href=\"https://Kamil-Jankowski.github.io/Ships-workshop/\" ",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^11.0.5",
+    "@angular/animations": "^11.0.9",
     "@angular/cdk": "^11.0.3",
     "@angular/common": "~11.0.4",
     "@angular/compiler": "~11.0.4",

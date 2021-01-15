@@ -10,6 +10,7 @@ import { WaitingRoomComponent } from './waiting-room/waiting-room.component';
  */
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'waiting-room', redirectTo: '/waiting-room', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'waiting-room/:name', component: WaitingRoomComponent },
 ];

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 import { PlayerService } from '../player.service';
-import { Player } from '../player';
 import { TranslateService } from '@ngx-translate/core';
+import { StatusWithToken } from '../StatusWithToken';
 
 /**
  * Represents welcome view of the app
@@ -15,7 +15,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HomeComponent implements OnInit {
 
-  private players: Player[];
   error_message:string;
 
   /**
@@ -31,7 +30,6 @@ export class HomeComponent implements OnInit {
    * Calls for getPlayers() method on component initialization
    */
   ngOnInit() {
-    this.getPlayers();
     this.error_message = ""; 
   }
 
@@ -44,9 +42,10 @@ export class HomeComponent implements OnInit {
     if (!name) { return; }
     this.playerService.addPlayer(name)
       .subscribe(
-        () => {
+        (response: StatusWithToken) => {
+          localStorage.setItem('JSESSIONID', response.token);
           this.error_message = '';
-          this.router.navigate(['/waiting-room/' + name])  
+          this.router.navigate(['/waiting-room/' + name])
         },
         error => { 
           console.log(error); 
@@ -54,6 +53,8 @@ export class HomeComponent implements OnInit {
             this.assignErrorMessage('HOME.FULL');
           } else if (error === 'NICKNAME_DUPLICATION') {
             this.assignErrorMessage('HOME.NICKNAME_DUPLICATION');
+          } else if (error === 'DUPLICATED_SESSION') {
+            this.assignErrorMessage('HOME.DUPLICATED_SESSION');
           } else {
             this.assignErrorMessage('HOME.ERROR');
           }
@@ -61,33 +62,9 @@ export class HomeComponent implements OnInit {
       );
   }
 
-
-  /**
-   * Delete all players in the frontend, RoomService and GameService
-   * @param name - player name
-   */
-  delete(): void {
-    this.playerService.deleteAllPlayers()
-      .subscribe(
-        () => {this.players = [];}, 
-        error => { 
-          console.log(error); 
-          this.error_message = error;});
-  }
-
-
   private assignErrorMessage(error: string) {
     this.translate
         .get(error)
         .subscribe((error: string) => this.error_message = error);
-  }
-
-  /**
-   * Gets players list from the server;
-   * Can be used to redirect to landing page if list already contains two players
-   */
-  private getPlayers(): void {
-    this.playerService.getPlayers()
-    .subscribe(players => this.players = players);
   }
 }

@@ -1,9 +1,9 @@
 {
   "name": "ships-workshop",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node srver.js",
+    "start": "node server.js",
     "build": "ng build",
     "build-ci": "ng build --prod --base-Href=\"https://Kamil-Jankowski.github.io/Ships-workshop/\" ",
     "test": "ng test",
@@ -14,12 +14,12 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^11.0.9",
+    "@angular/animations": "^11.0.5",
     "@angular/cdk": "^11.0.3",
-    "@angular/cli": "^11.1.0",
+    "@angular/cli": "^11.0.7",
     "@angular/common": "~11.0.4",
     "@angular/compiler": "~11.0.4",
-    "@angular/compiler-cli": "^11.1.0",
+    "@angular/compiler-cli": "^11.0.9",
     "@angular/core": "~11.0.4",
     "@angular/forms": "~11.0.4",
     "@angular/material": "^11.0.3",
@@ -44,7 +44,6 @@
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
-    "enhanced-resolve": "^3.3.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.1.0",
@@ -57,7 +56,7 @@
     "tslint": "~6.1.0"
   },
   "engines": {
-    "node": "12.20.0",
-    "npm": "6.14.10"
+    "node": "10.19.0",
+    "npm": "6.14.4"
   }
 }

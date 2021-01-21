@@ -4,8 +4,6 @@ name: CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
   workflow_dispatch:
 
@@ -46,5 +44,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: deploy_dist/Ships-workshop
-          
+          FOLDER: deploy_dist/ShipsFrontend

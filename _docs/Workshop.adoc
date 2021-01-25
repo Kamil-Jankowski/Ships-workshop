@@ -1,0 +1,261 @@
+:icons: font
+:toc: preamble
+:hardbreaks:
+:imagesdir: images
+:data-uri:
+:authors: Michał Jędrzejczyk, Hubert Milczarek, Kamil Jankowski
+
+= Statki - warsztat
+       
+Poniższy warsztat pozwala na zapoznanie z projektem oraz wykorzystanymi technologiami i narzędziami.
+
+== Część 1. Wprowadzenie do projektu
+
+=== Architektura
+Projekt oparty jest na architekturze mikrousług. Architektura mikrousługowa polega na wydzieleniu funkcjonalności programu do oddzielnych usług, z których każda powinna być niezależna i luźno powiązana z innymi, tak aby ułatwić skalowanie projektu oraz pracę nad nim wielu zespołom.
+
+==== Czym są mikrousługi?
+
+Mikrousługi to małe funkcjonalności wewnątrz naszej aplikacji, które powinny posiadać poniższe cechy.
+
+* MAŁE - pozwala to na podział pracy tak, by jeden zespół był odpowiedzialny za jedną usługę;
+* LUŹNO POWIĄZANE - usługi nie ingerują wzajemnie w swój stan;
+* NIEZALEŻNE - możemy zaktualizować jedną usługę bez konieczności aktualizowania całej aplikacji (istotne zwłaszcza przy bardzo dużych projektach);
+* SKOMUNIKOWANE - ze względu na luźne powiązania serwisów istotną rolę pełni komunikacja między nimi, w tym celu wykorzystuje się odpowiednio zdefiniowane API pozwalające na odpowiednią enkapsulację;
+* ODPOWIEDZIALNE ZA WŁASNE DANE - każda usługa definiuje własną bazę danych (ma to zarówno pozytywne jak i negatywne konsekwencje) (Fig.1);
+* ZRÓŻNICOWANE - również pod kątem wykorzystanych technologii. Dzięki lużnemu powiązaniu nie muszą one korzystać z tych samych bibliotek, baz danych ani nawet być napisane w tym samym języku.
+
+[#data]
+.Odpowiedzialność za własne dane
+[link=https://www.nginx.com/blog/introduction-to-microservices/]
+
+image::./responsible.png[Bazy danych]
+
+Na system mikrousługowy oprócz usług składa się również orkiestrator - element odpowiedzialny za zarządzanie aktywnością usług. Przykładem takiego orkiestratora może być Kubernetes.
+
+Kolejnym ważnym elementem jest brama interfejsu API służąca jako punkt dostępu dla klientów aplikacji. Pozwala to na odzielenie klientów od usług oraz wprowadzenie dodatkowych funkcjonalności, jak na przykład równoważenie obciążenia (ang. _load balancing_).
+
+Poniższy diagram przedstawia ogólny schemat systemu opartego na mikrousługach.
+
+[#micro]
+.Schemat mikrousług
+[link=https://docs.microsoft.com/pl-pl/azure/architecture/guide/architecture-styles/microservices]
+
+image::./microservices.png[Mikrousługi]
+
+==== Zalety mikrosusług
+
+. Elastyczność
+. Praca w małych zespołach
+. Niewielka ilość kodu.
+. Mieszanina technologii
+. Izolacja błędów (przy odpowiedniej obsudze błędów)
+. Skalowalność
+. Izolacja danych
+
+==== Trudności występujące w architekturze mikrousługowej
+
+. Złożoność
+. Tworzenie i testowanie
+. Brak nadzoru
+. Przeciążenie i opóźnienie sieci
+. Utrudnione utrzymanie spójności danych
+. Zarządzanie
+. Obsługa wersji
+. Trudniejsze w opanowaniu niż aplikacje monolityczne
+
+==== Architektura aplikacji
+
+Poniższy diagram przedstawia uproszczoną strukturę aplikacji mikrousługowej obecną w projekcie.
+
+[#arch]
+.Architektura aplikacji
+[link=./ShipsArchitecture.html]
+
+image::./arch.png[Architektura aplikacji]
+
+=== Diagram przepływu
+
+Poniższy diagram prezentuje działanie aplikacji. Dla przejrzystości diagram nie uwzględnia przycisku przerywającego rozgrywkę w trakcie gry. Jego działanie opiera się na wskazaniu który z graczy się poddał, następnie następuje przekierowanie podobne jak do tego po normalnym zakończeniu rozgrywki.
+
+[#flow]
+.Diagram przepływu
+[link=./ShipsGameDiagram.html]
+
+image::./flow.png[Flowchart]
+
+== Część 2. Technologie
+
+=== Wykorzystane technologie i narzędzia
+
+. Mikrousługi
+. REST
+. Spring-Boot
+. Angular
+. Docker
+. Heroku
+. gh-pages (niezalecane do aplikacji SPA)
+
+=== REST
+
+Wprowadzenie - co kto kiedy i dlaczego
+
+==== CRUD
+
+==== polecenia HTTP
+
+==== Zadanie
+
+
+Warsztat REST API for GitLab.
+
+=== Angular
+
+Czym jest Angular?
+
+==== Instalacja angulara
+
+[source: bash]
+----
+npm install -g @angular/cli
+----
+
+Jeśli nie posiadasz zainstalowanego menedżera pakietów `npm`, użyj poniższej instrukcji:
+https://www.npmjs.com/get-npm
+
+[NOTE]
+====
+By rozpocząć pracę z projektem należy zainstalować niezbędne pakiety (wewnątrz projektu):
+- _translate_ - tłumaczenie
+- _toastr_ - powiadomienia okienkowe
+- _material_ - komponenty pomocnicze
+- _animations_ - animacje
+
+[source: bash]
+----
+npm install @ngx-translate/core
+npm install ngx-toastr --save
+npm install --save @angular/material @angular/cdk
+npm install --save @angular/animations
+----
+====
+
+==== "Hello World" - zadanie wprowadzające
+
+. Utworzenie startowego projektu angulara:
++
+[source: bash]
+----
+ng new workshop-project
+----
++
+* W przypadku pojawienia się błędów:
++
+----
+An unhandled exception occurred: Cannot find module '@angular-devkit/build-angular/package.json'
+See "/tmp/ng-Rl1vk2/angular-errors.log" for further details.
+----
+Uruchom poniższą instrukcję w folderze z projektem:
++
+[source: bash]
+----
+npm install --save-dev @angular-devkit/build-angular
+----
++
+* W przypadku pojawienia się błędu:
++
+----
+An unhandled exception occurred: Cannot find module '@angular/compiler-cli'
+----
+Uruchom poniższą instrukcję w folderze z projektem:
++
+[source: bash]
+----
+npm install
+----
++
+. Zapoznaj się z instrukcjami ze strony startowej projektu:
++
+[source: bash]
+----
+cd workshop-project
+ng serve --open
+----
+Po więcej informacji możesz sięgnąć do dokumentacji (Źródła)
++
+. Usuń istniejącą zawartość strony i zastąp ją pojedynczym nagłówkiem _Hello World!_
+
+Zadanie napisać POST i PATCH/PUT żeby dodawać statki do listy
+
+
+
+=== Spring-Boot
+
+Uzupełić treścią warsztatu springowego
+
+== Część 3. Prezentacja działania
+
+Nasza aplikacja:
+
+- https://ships-the-game.herokuapp.com
+- https://ships-room-service-backend.herokuapp.com
+- https://ships-random-placement-service.herokuapp.com
+- https://ships-game-service-backend.herokuapp.com
+
+== Część 4. Przygotowanie przestrzeni roboczej
+
+. Pobierz poniższe repozytoria:
++
+----
+git clone https://github.com/Kamil-Jankowski/Ships-workshop.git
+git clone backend-repo
+----
++
+. Uruchom pobrane repozytoria
+* uruchom część backendową lokalnie
+* uruchom część frontendową lokalnie
+
+== Część 5. Zadanie
+
+Proste zadanie - napraw metodę (2)
+pliki properties z linkami do repo
+wszystkie repo lokalnie
+
+Podczas rozgrywki jeden z graczy może utracić połączenie lub wyłączyć przeglądarkę, co może doprowadzić do stagnacji aplikacji. Konsekwencją opisanej sytuacji jest brak możliwości rozpoczęcia kolejnej gry. Aby przywrócić poprawne działanie aplikacji wymagne jest jej ponowne uruchomienie lub wysłanie rządania REST API o usunięcie wszystkich graczy.
+
+Warsztat wymaga wprowadzenia mechanizmu weryfikacji obecności użytkownika, który posiłkuje się sesją HTTP.
+
+. Zapoznaj się dokumentacją projektu:
+.. architektura serwisów
+.. diagram przepływu
+.. część frontendowa
+.. część backendowa
+.. REST API
+
++
+To jest czas na Twoje pytania
++
+. Zadanie warsztatowe posiada ograniczone funkconalności w stosunku do całego projektu (tylko strona główna + poczekalnia)
+. Zapoznaj się z kodem i komentarzami w środku
+.. Twój lokalny frontend powinien łączyć się z lokalnym backendem - TODO 1
+. Zapoznaj się z dostarczoną dokumentacją REST API
+.. Dokumentacja zawiera wszystkie rządania i odpowiedzi wykorzystywane w projekcie _Statki_ - jednego z nich brakuje w kodzie - TODO 2
+. Dodaj kod odpowiedzialny za usuwanie gracza gdy jest on nieaktywny - TODO 3
+. Sprawdź, wykorzystując frontend, działanie aplikacji po wprowadzonych zmianach (manualnie)
+
+== Podsumowanie
+
+. Wykorzystane technologie:
+  - mikrousługi
+  - Angular (typescript, css, html)
+  - REST
+  - Spring-Boot
+  
+. Pytania
+
+== Źródła
+
+https://github.com/NationalBankBelgium/REST-API-Design-Guide
+https://angular.io/docs
+https://spring.io/guides
+https://docs.microsoft.com/pl-pl/azure/architecture/guide/architecture-styles/microservices

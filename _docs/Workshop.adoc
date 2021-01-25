@@ -6,7 +6,7 @@
 :authors: Michał Jędrzejczyk, Hubert Milczarek, Kamil Jankowski
 
 = Statki - warsztat
-       
+
 Poniższy warsztat pozwala na zapoznanie z projektem oraz wykorzystanymi technologiami i narzędziami.
 
 == Część 1. Wprowadzenie do projektu
@@ -90,28 +90,95 @@ image::./flow.png[Flowchart]
 
 . Mikrousługi
 . REST
-. Spring-Boot
 . Angular
+. Spring-Boot
 . Docker
 . Heroku
 . gh-pages (niezalecane do aplikacji SPA)
 
-=== REST
+=== REST API
 
-Wprowadzenie - co kto kiedy i dlaczego
+**RE**presentional **S**tate **T**ransfer - styl architektury dla serwisów sieciowych zaprezentowany po raz pierwszy w roku 2000 przez Roya Fieldinga. Jest interfejsem zapewniającym bezstanową komunikację oraz odzielenie klienta od serwera. Bezstanowość tego stylu oznacza, że serwer nie musi znać stanu klienta i vice versa. Zarówno jeden, jak i drugi rozumieją przesyłane wiadomości (tworzone zgodnie z zaleceniami architektury REST), wykorzystując do tego celu zasoby określone w API oraz metody protokołu HTTP.
+
+Zasobami określamy rzeczowniki w liczbie mnogiej obecne w API. Mogą to być na przykład `/issues` w REST API serwisu GitLab.
 
 ==== CRUD
 
-==== polecenia HTTP
+Zadania stawiane przed REST API są wykonywane przy pomocy metod HTTP. Metody te realizują zestaw operacji określanych mianem CRUD:
+
+. _Create_ - tworzenie pojedynczego obiektu po stronie serwera.
++
+Do tego celu powinno się wykorzystywać metodę POST.
+
+. _Read/Retrieve_ - pobieranie pojedynczego obiektu z serwera.
++
+Do realizacji tej operacji należy wykorzystywać metodę GET.
+
+. _Update_ - zaktualizowanie obiektu po stronie serwera.
++
+To zadanie należy rozpatrywać w dwóch przypadkach:
+
+.. do częściowej aktualizacji obiektu (np. jednej jego cechy), powinno się wykorzystywać metodę POST. W takiej sytuacji wystarczy przesłać tylko tę część, którą zamierzamy uaktualnić;
+.. do całkowitej podmiany obiektu należy użyć metody PUT. W tym wypadku wszystkie cechy obiektu muszą być umieszczone w wiadomości.
+
+. _Delete_ - usuwanie obiektu z serwera.
++
+Operacja usuwania musi być realizowane przez metodę DELETE wywołaną na konkretnym obiekcie.
+
+==== Metody HTTP
+
+Przedstawione powyżej metody stanowią tylko część metod dostępnych w protokole HTTP.
+
+. GET
++
+Pobieranie reprezentacji zasobów.
+
+. HEAD
+Pobiera tylko nagłówek dla wskazanego zasobu (dobry sposób sprawdzenia, czy zasób istnieje, bez konieczności pobierania go z serwera).
+
+. POST
++
+Tworzenie oraz częściowe aktualizowanie zasobów.
+
+. PUT
++
+Aktualizacja kompletna zasobów. Całościowa zmiana danego zasobu.
+
+. PATCH
++
+Zapewnia instrukcje dotyczące tego jak zmienić obecny stan zasobu, by stworzyć nową wersję. Może być wykorzystywana do częściowej aktualizacji zasobów.
+
+. OPTIONS
++
+Wykorzystywana do uzyskiwania informacji o dopuszczalnej komunikacji z docelowymi zasobami. Musi zwracać nagłówek _Allow_ z informacją o wspieranych metodach.
+
+. DELETE
++
+Hmmm... co to robiło? A tak - usuwanie zasobów.
+Wykonanie tej metody nie musi być natychmiastowe.
+
 
 ==== Zadanie
 
+Wykorzystując wiedzę o metodach oraz o REST API pobierz listę aktywnych kwitów z serwisu GitLab przypisanych do Ciebie. Jeśli, takie nie istnieją utwórz jeden korzystając z REST API, a następnie pobierz go z serwera.
 
-Warsztat REST API for GitLab.
+Szczegóły zadania znajdziesz w poniższym warsztacie:
+
+Warsztat https://git.epam.com/tomasz_borek/ja-materials/-/blob/102-gitlab-rest-api/Fundaments.D0/01_Git-basics/GitLab_rest_API/RestAPI-workshop.adoc[_REST API for GitLab_]
 
 === Angular
 
 Czym jest Angular?
+Angular jest platformą oraz szkieletem dla projektowania oraz rozwoju wydajnych jednostronicowych aplikacji (SAP - single-page app =! single page website).
+
+Jego podstawowym elementem budulcowym są komponenty.
+Każdy komponent składa się z poniższych elementów:
+* szablonu HTML, określającego wygląd strony;
+* klasy TypeScript, definiującej zachowania naszego komponentu;
+* selektora CSS, definiującego sposób użycia komponentu w szablonie HTML;
+* opcjonalnie, szablonu stylu CSS, jaki ma być zastosowany dla komponentu.
+
+Podczas tworzenia komponentu przy pomocy _cli_ powyższe elementy zostaną wygenerowane automatycznie.
 
 ==== Instalacja angulara
 
@@ -185,13 +252,59 @@ Po więcej informacji możesz sięgnąć do dokumentacji (Źródła)
 +
 . Usuń istniejącą zawartość strony i zastąp ją pojedynczym nagłówkiem _Hello World!_
 
-Zadanie napisać POST i PATCH/PUT żeby dodawać statki do listy
+==== "Moje statki" - zadnanie
 
+. Utwórz nowy projekt wykorzystując instrukcję poznaną w poprzednim zadaniu.
+. Utwórz komponent _moje_statki_
+. Utwórz interfejs _statek_ zawierający pola `id` oraz `name`
+. Utwórz serwis _statki_
++
+[source: bash]
+----
+ng generate service statki
+----
 
+. Wykorzystując _in-memory-web-api_ zasymuluj serwer
++
+[source:bash]
+----
+npm install angular-in-memory-web-api --save
+ng generate service InMemoryData
+----
++
+Zawartość pliku:
++
+[source:bash]
+----
+import { Injectable } from '@angular/core';
+import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { Statek } from './statek';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class InMemoryDataService implements InMemoryDbService {
+  createDb() {
+    const statki = [
+      { id: 11, name: 'Dr Nice' },
+      { id: 12, name: 'Narco' },
+      { id: 13, name: 'Bombasto' },
+    ];
+    return {statki};
+  }
+
+  genId(statki: statek[]): number {
+    return statki.length > 0 ? Math.max(...statki.map(statek => statek.id)) + 1 : 11;
+  }
+}
+----
+
+. Wewnątrz utworzonego serwisu dodaj metodę, która będzie dodawać statki do listy, oraz metodę pozwalającę na ich pobieranie.
+. Wykorzystując utworzone komponenty wyświetl listę statków oraz formularz służący do dodawania nowych.
 
 === Spring-Boot
 
-Uzupełić treścią warsztatu springowego
+Warsztat dostępny https://example.com[tutaj]
 
 == Część 3. Prezentacja działania
 
@@ -208,7 +321,7 @@ Nasza aplikacja:
 +
 ----
 git clone https://github.com/Kamil-Jankowski/Ships-workshop.git
-git clone backend-repo
+git clone backend-repo for workshop
 ----
 +
 . Uruchom pobrane repozytoria
@@ -217,21 +330,12 @@ git clone backend-repo
 
 == Część 5. Zadanie
 
-Proste zadanie - napraw metodę (2)
-pliki properties z linkami do repo
-wszystkie repo lokalnie
-
-Podczas rozgrywki jeden z graczy może utracić połączenie lub wyłączyć przeglądarkę, co może doprowadzić do stagnacji aplikacji. Konsekwencją opisanej sytuacji jest brak możliwości rozpoczęcia kolejnej gry. Aby przywrócić poprawne działanie aplikacji wymagne jest jej ponowne uruchomienie lub wysłanie rządania REST API o usunięcie wszystkich graczy.
-
-Warsztat wymaga wprowadzenia mechanizmu weryfikacji obecności użytkownika, który posiłkuje się sesją HTTP.
-
 . Zapoznaj się dokumentacją projektu:
 .. architektura serwisów
 .. diagram przepływu
 .. część frontendowa
 .. część backendowa
 .. REST API
-
 +
 To jest czas na Twoje pytania
 +
@@ -240,7 +344,6 @@ To jest czas na Twoje pytania
 .. Twój lokalny frontend powinien łączyć się z lokalnym backendem - TODO 1
 . Zapoznaj się z dostarczoną dokumentacją REST API
 .. Dokumentacja zawiera wszystkie rządania i odpowiedzi wykorzystywane w projekcie _Statki_ - jednego z nich brakuje w kodzie - TODO 2
-. Dodaj kod odpowiedzialny za usuwanie gracza gdy jest on nieaktywny - TODO 3
 . Sprawdź, wykorzystując frontend, działanie aplikacji po wprowadzonych zmianach (manualnie)
 
 == Podsumowanie
@@ -250,7 +353,7 @@ To jest czas na Twoje pytania
   - Angular (typescript, css, html)
   - REST
   - Spring-Boot
-  
+
 . Pytania
 
 == Źródła

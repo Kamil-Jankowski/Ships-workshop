@@ -258,10 +258,10 @@ Po więcej informacji możesz sięgnąć do dokumentacji (Źródła)
 NOTE: Repozytorium z rozwiązaniem zadania: https://github.com/Kamil-Jankowski/Angular-workshop
 
 . Utwórz nowy projekt wykorzystując instrukcję poznaną w poprzednim zadaniu.
-. Utwórz komponent _moje_statki_
+. Utwórz komponent _moje-statki_
 . Utwórz interfejs _statek_ zawierający pola `id` oraz `name`
-. Wewnątrz komponentu _moje_statki_ dodaj statek oraz wyświetlanie szczegółów statku (id + name) w szablonie html.
-. Wewnątrz komponentu _moje_statki_ umieść formularz umożliwiający dodawanie nowego statku używając składni `[(ngModel)]`.
+. Wewnątrz komponentu _moje-statki_ dodaj statek oraz wyświetlanie szczegółów statku (id + name) w szablonie html.
+. Wewnątrz komponentu _moje-statki_ umieść formularz umożliwiający dodawanie nowego statku używając składni `[(ngModel)]`.
 +
 Aby powyższy formularz zadziałał dodaj do `app.module.ts`:
 +
@@ -396,7 +396,7 @@ Następnie, dodaj do serwisu metodę służącą do pobierania statków:
     return SHIPS;
   }
 ----
-. Zaktualizuj kod komponentu _moje_statki_ tak by posiadał zwykłą deklarację zmiennej tablicowej `statki`.
+. Zaktualizuj kod komponentu _moje-statki_ tak by posiadał zwykłą deklarację zmiennej tablicowej `statki`.
 Następnie dodaj do niego metodę pobierającą statki (wykorzystującą metodę z serwisu _statki_).
 +
 [source: typescript]
@@ -430,7 +430,7 @@ import { Observable, of } from 'rxjs';
   }
 ----
 +
-Podobnie należy zmienić metodę w komponencie _moje_statki_:
+Podobnie należy zmienić metodę w komponencie _moje-statki_:
 +
 [source: typescript]
 ----
@@ -517,7 +517,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 ----
 
 . Zdefiniuj zmienną, która będzie określała Twój zasób dla REST API, na przykład `api/ships`.
-. Korzystając z utworzonej zmiennej popraw metodę _get_ w taki sposób, by wykorzystywała klienta http (`http.get<Array[]>(url)).
+. Korzystając z utworzonej zmiennej popraw metodę _get_ w taki sposób, by wykorzystywała klienta http (`http.get<Array[]>(url)`).
 +
 Teraz możesz usunąć klasę _mock_, która przechowywała statki. Nie jest już potrzebna. Jeśli będziesz chciał połączyć się z rzeczywistym serwerem, wystarczy, że usuniesz przechwytywanie zapytań z klasy `app.module.ts` i zmienisz zmienną dla zasobu w serwisie `statki`.
 . Wewnątrz utworzonego serwisu dodaj metodę, która będzie dodawać statek do listy, oraz metodę pozwalająca na jego usunięcie.
@@ -636,7 +636,6 @@ To jest czas na Twoje pytania
 . Usuń gracza z pokoju
 . Czy powyższy krok działa? - TODO 3
 . Sprawdź, wykorzystując frontend, działanie aplikacji po wprowadzonych zmianach (manualnie)
-
 
 == Podsumowanie
 

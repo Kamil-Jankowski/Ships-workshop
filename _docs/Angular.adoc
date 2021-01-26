@@ -5,168 +5,7 @@
 :data-uri:
 :authors: Michał Jędrzejczyk, Hubert Milczarek, Kamil Jankowski
 
-= Statki - warsztat
-
-Poniższy warsztat pozwala na zapoznanie z projektem oraz wykorzystanymi technologiami i narzędziami.
-
-== Część 1. Wprowadzenie do projektu
-
-=== Architektura
-Projekt oparty jest na architekturze mikrousług. Architektura mikrousługowa polega na podzieleniu funkcjonalności programu na oddzielne usługi, z których każda powinna być niezależna i luźno powiązana z innymi, tak aby ułatwić skalowanie projektu oraz pracę nad nim wielu zespołom.
-
-==== Czym są mikrousługi?
-
-Mikrousługi to małe funkcjonalności wewnątrz naszej aplikacji, które powinny posiadać poniższe cechy.
-
-* MAŁE - pozwala to na podział pracy tak, by jeden zespół był odpowiedzialny za jedną usługę;
-* LUŹNO POWIĄZANE - usługi nie ingerują wzajemnie w swój stan;
-* NIEZALEŻNE - możemy zaktualizować jedną usługę bez konieczności aktualizowania całej aplikacji (istotne zwłaszcza przy bardzo dużych projektach);
-* SKOMUNIKOWANE - ze względu na luźne powiązania serwisów istotną rolę pełni komunikacja między nimi, w tym celu wykorzystuje się odpowiednio zdefiniowane API pozwalające na odpowiednią enkapsulację;
-* ODPOWIEDZIALNE ZA WŁASNE DANE - każda usługa definiuje własną bazę danych (ma to zarówno pozytywne jak i negatywne konsekwencje) (Fig.1);
-* ZRÓŻNICOWANE - również pod kątem wykorzystanych technologii. Dzięki lużnemu powiązaniu nie muszą one korzystać z tych samych bibliotek, baz danych ani nawet być napisane w tym samym języku.
-
-[#data]
-.Odpowiedzialność za własne dane
-[link=https://www.nginx.com/blog/introduction-to-microservices/]
-
-image::./responsible.png[Bazy danych]
-
-Na system mikrousługowy oprócz usług składa się również orkiestrator - element odpowiedzialny za zarządzanie aktywnością usług. Przykładem takiego orkiestratora może być Kubernetes.
-
-Kolejnym ważnym elementem jest brama interfejsu API służąca jako punkt dostępu dla klientów aplikacji. Pozwala to na odzielenie klientów od usług oraz wprowadzenie dodatkowych funkcjonalności, jak na przykład równoważenie obciążenia (ang. _load balancing_).
-
-Poniższy diagram przedstawia ogólny schemat systemu opartego na mikrousługach.
-
-[#micro]
-.Schemat mikrousług
-[link=https://docs.microsoft.com/pl-pl/azure/architecture/guide/architecture-styles/microservices]
-
-image::./microservices.png[Mikrousługi]
-
-==== Zalety mikrosusług
-
-. Elastyczność
-. Praca w małych zespołach
-. Niewielka ilość kodu.
-. Mieszanina technologii
-. Izolacja błędów (przy odpowiedniej obsudze błędów)
-. Skalowalność
-. Izolacja danych
-
-==== Trudności występujące w architekturze mikrousługowej
-
-. Złożoność
-. Tworzenie i testowanie
-. Brak nadzoru
-. Przeciążenie i opóźnienie sieci
-. Utrudnione utrzymanie spójności danych
-. Zarządzanie
-. Obsługa wersji
-. Trudniejsze w opanowaniu niż aplikacje monolityczne
-
-==== Architektura aplikacji
-
-Poniższy diagram przedstawia uproszczoną strukturę aplikacji mikrousługowej obecną w projekcie.
-
-[#arch]
-.Architektura aplikacji
-[link=./ShipsArchitecture.html]
-
-image::./arch.png[Architektura aplikacji]
-
-=== Diagram przepływu
-
-Poniższy diagram prezentuje działanie aplikacji. Dla przejrzystości diagram nie uwzględnia przycisku przerywającego rozgrywkę w trakcie gry. Jego działanie opiera się na wskazaniu który z graczy się poddał, następnie następuje przekierowanie podobne jak do tego po normalnym zakończeniu rozgrywki.
-
-[#flow]
-.Diagram przepływu
-[link=./ShipsGameDiagram.html]
-
-image::./flow.png[Flowchart]
-
-== Część 2. Technologie
-
-=== Wykorzystane technologie i narzędzia
-
-. Mikrousługi
-. REST
-. Angular
-. Spring-Boot
-. Docker
-. Heroku
-. gh-pages (niezalecane do aplikacji SPA)
-
-=== REST API
-
-**RE**presentional **S**tate **T**ransfer - styl architektury dla serwisów sieciowych zaprezentowany po raz pierwszy w roku 2000 przez Roya Fieldinga. Jest interfejsem zapewniającym bezstanową komunikację oraz odzielenie klienta od serwera. Bezstanowość tego stylu oznacza, że serwer nie musi znać stanu klienta i vice versa. Zarówno jeden, jak i drugi rozumieją przesyłane wiadomości (tworzone zgodnie z zaleceniami architektury REST), wykorzystując do tego celu zasoby określone w API oraz metody protokołu HTTP.
-
-Zasobami określamy rzeczowniki w liczbie mnogiej obecne w API. Mogą to być na przykład `/issues` w REST API serwisu GitLab.
-
-==== CRUD
-
-Zadania stawiane przed REST API są wykonywane przy pomocy metod HTTP. Metody te realizują zestaw operacji określanych mianem CRUD:
-
-. _Create_ - tworzenie pojedynczego obiektu po stronie serwera.
-+
-Do tego celu powinno się wykorzystywać metodę POST.
-
-. _Read/Retrieve_ - pobieranie pojedynczego obiektu z serwera.
-+
-Do realizacji tej operacji należy wykorzystywać metodę GET.
-
-. _Update_ - zaktualizowanie obiektu po stronie serwera.
-+
-To zadanie należy rozpatrywać w dwóch przypadkach:
-
-.. do częściowej aktualizacji obiektu (np. jednej jego cechy), powinno się wykorzystywać metodę POST. W takiej sytuacji wystarczy przesłać tylko tę część, którą zamierzamy uaktualnić;
-.. do całkowitej podmiany obiektu należy użyć metody PUT. W tym wypadku wszystkie cechy obiektu muszą być umieszczone w wiadomości.
-
-. _Delete_ - usuwanie obiektu z serwera.
-+
-Operacja usuwania musi być realizowane przez metodę DELETE wywołaną na konkretnym obiekcie.
-
-==== Metody HTTP
-
-Przedstawione powyżej metody stanowią tylko część metod dostępnych w protokole HTTP.
-
-. GET
-+
-Pobieranie reprezentacji zasobów.
-
-. HEAD
-Pobiera tylko nagłówek dla wskazanego zasobu (dobry sposób sprawdzenia, czy zasób istnieje, bez konieczności pobierania go z serwera).
-
-. POST
-+
-Tworzenie oraz częściowe aktualizowanie zasobów.
-
-. PUT
-+
-Aktualizacja kompletna zasobów. Całościowa zmiana danego zasobu.
-
-. PATCH
-+
-Zapewnia instrukcje dotyczące tego jak zmienić obecny stan zasobu, by stworzyć nową wersję. Może być wykorzystywana do częściowej aktualizacji zasobów.
-
-. OPTIONS
-+
-Wykorzystywana do uzyskiwania informacji o dopuszczalnej komunikacji z docelowymi zasobami. Musi zwracać nagłówek _Allow_ z informacją o wspieranych metodach. Jest ona również odpowiedzialna za sprawdzanie CORS (Cross-Origin Resource Sharing).
-
-. DELETE
-+
-Hmmm... co to robiło? A tak - usuwanie zasobów.
-Wykonanie tej metody nie musi być natychmiastowe.
-
-
-==== Zadanie
-
-Wykorzystując wiedzę o metodach oraz o REST API pobierz listę aktywnych kwitów z serwisu GitLab przypisanych do Ciebie. Jeśli, takie nie istnieją utwórz jeden korzystając z REST API, a następnie pobierz go z serwera.
-
-Szczegóły zadania znajdziesz w poniższym warsztacie:
-
-Warsztat https://git.epam.com/tomasz_borek/ja-materials/-/blob/102-gitlab-rest-api/Fundaments.D0/01_Git-basics/GitLab_rest_API/RestAPI-workshop.adoc[_REST API for GitLab_]
-
-=== Angular
+= Angular
 
 Czym jest Angular?
 Angular jest platformą oraz szkieletem dla projektowania oraz rozwoju wydajnych jednostronicowych aplikacji (SAP - single-page app =! single page website).
@@ -181,7 +20,7 @@ Każdy komponent składa się z poniższych elementów:
 
 Podczas tworzenia komponentu przy pomocy _cli_ powyższe elementy zostaną wygenerowane automatycznie.
 
-==== Instalacja angulara
+== Instalacja angulara
 
 [source: bash]
 ----
@@ -208,7 +47,7 @@ npm install --save @angular/animations
 ----
 ====
 
-==== "Hello World" - zadanie wprowadzające
+== "Hello World" - zadanie wprowadzające
 
 . Utworzenie startowego projektu angulara:
 +
@@ -253,7 +92,7 @@ Po więcej informacji możesz sięgnąć do dokumentacji (Źródła)
 +
 . Usuń istniejącą zawartość strony i zastąp ją pojedynczym nagłówkiem _Hello World!_
 
-==== "Moje statki" - zadanie
+== "Moje statki" - zadanie
 
 NOTE: Repozytorium z rozwiązaniem zadania: https://github.com/Kamil-Jankowski/Angular-workshop
 
@@ -587,63 +426,7 @@ NOTE: Na tym etapie powinieneś posiadać kod przypominający ten z migawki _Shi
 
 Gotowe - gratulacje!
 
-=== Spring-Boot
+= Źródła
 
-Warsztat dostępny https://example.com[tutaj]
-
-== Część 3. Prezentacja działania
-
-Nasza aplikacja:
-
-- https://ships-the-game.herokuapp.com
-- https://ships-room-service-backend.herokuapp.com
-- https://ships-random-placement-service.herokuapp.com
-- https://ships-game-service-backend.herokuapp.com
-
-== Część 4. Przygotowanie przestrzeni roboczej
-
-. Pobierz poniższe repozytoria:
-+
-----
-git clone https://github.com/Kamil-Jankowski/Ships-workshop.git
-git clone backend-repo for workshop
-----
-+
-. Uruchom pobrane repozytoria
-* uruchom część backendową lokalnie
-* uruchom część frontendową lokalnie
-
-== Część 5. Zadanie
-
-. Zapoznaj się dokumentacją projektu:
-.. architektura serwisów
-.. diagram przepływu
-.. część frontendowa
-.. część backendowa
-.. REST API
-+
-To jest czas na Twoje pytania
-+
-. Zadanie warsztatowe posiada ograniczone funkconalności w stosunku do całego projektu (tylko strona główna + poczekalnia)
-. Zapoznaj się z kodem i komentarzami w środku
-.. Twój lokalny frontend powinien łączyć się z lokalnym backendem - TODO 1
-. Zapoznaj się z dostarczoną dokumentacją REST API
-.. Dokumentacja zawiera wszystkie rządania i odpowiedzi wykorzystywane w projekcie _Statki_ - jednego z nich brakuje w kodzie - TODO 2
-. Sprawdź, wykorzystując frontend, działanie aplikacji po wprowadzonych zmianach (manualnie)
-
-== Podsumowanie
-
-. Wykorzystane technologie:
-  - mikrousługi
-  - Angular (typescript, css, html)
-  - REST
-  - Spring-Boot
-
-. Pytania
-
-== Źródła
-
-https://github.com/NationalBankBelgium/REST-API-Design-Guide
 https://angular.io/docs
-https://spring.io/guides
-https://docs.microsoft.com/pl-pl/azure/architecture/guide/architecture-styles/microservices
+

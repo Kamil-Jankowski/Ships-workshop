@@ -15,7 +15,7 @@ import { StatusWithToken } from './StatusWithToken';
   providedIn: 'root'
 })
 export class PlayerService {
-  private playersUrl = 'https://ships-room-service-backend.herokuapp.com/room';
+  private playersUrl = 'http://localhost:8080/room';
   
 
   /**

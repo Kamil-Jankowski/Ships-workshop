@@ -606,7 +606,7 @@ Nasza aplikacja:
 +
 ----
 git clone https://github.com/Kamil-Jankowski/Ships-workshop.git
-git clone backend-repo for workshop
+git clone https://gitlab.com/Kamil-Jankowski/ships-workshop-backend.git
 ----
 +
 . Uruchom pobrane repozytoria
@@ -624,12 +624,19 @@ git clone backend-repo for workshop
 +
 To jest czas na Twoje pytania
 +
-. Zadanie warsztatowe posiada ograniczone funkconalności w stosunku do całego projektu (tylko strona główna + poczekalnia)
+. Zadanie warsztatowe posiada ograniczone funkcjonalności w stosunku do całego projektu (tylko strona główna + poczekalnia)
 . Zapoznaj się z kodem i komentarzami w środku
 .. Twój lokalny frontend powinien łączyć się z lokalnym backendem - TODO 1
-. Zapoznaj się z dostarczoną dokumentacją REST API
-.. Dokumentacja zawiera wszystkie rządania i odpowiedzi wykorzystywane w projekcie _Statki_ - jednego z nich brakuje w kodzie - TODO 2
+. Uruchom aplikację:
+.. Dodaj nowego gracza
+.. Uruchom aplikację w nowej karcie inkognito
+.. Dodaj gracza w karcie inkognito
+. Czy powyższe kroki działają? - TODO 2
 . Sprawdź, wykorzystując frontend, działanie aplikacji po wprowadzonych zmianach (manualnie)
+. Usuń gracza z pokoju
+. Czy powyższy krok działa? - TODO 3
+. Sprawdź, wykorzystując frontend, działanie aplikacji po wprowadzonych zmianach (manualnie)
+
 
 == Podsumowanie
 

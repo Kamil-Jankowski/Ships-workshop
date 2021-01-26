@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8506dfb9-f54d-4ccb-8998-25608a102f17" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Angular.adoc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/_docs.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Workshop.adoc" beforeDir="false" afterPath="$PROJECT_DIR$/Workshop.adoc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/arch.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/arch.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

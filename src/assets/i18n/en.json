@@ -6,11 +6,11 @@
     },
 
     "HOME": {
-        "RULES": "Rules:",
+        "RULES": "Tasks:",
         "ONE": "Familiarise yourself with the code and comments to it",
-        "TWO": "Familiarise yourself with REST API documentation",
-        "THREE": "Add necessary dependencies and prepared code",
-        "FOUR": "Add a code responsible for removing the player when inactive",
+        "TWO": "Connect frontend with backend locally",
+        "THREE": "Add two players to the waiting room",
+        "FOUR": "Remove player from the waiting room",
         "FIVE": "Verify, using this service, implemented changes",
         "PLAYER_NAME": "Player name",
         "INSTRUCTION": "This is your in-game identifier",

@@ -15,7 +15,8 @@ import { StatusWithToken } from './StatusWithToken';
   providedIn: 'root'
 })
 export class PlayerService {
-  private playersUrl = 'http://localhost:8080/room';
+  // TODO: #1
+  private playersUrl = 'https://example.com';
   
 
   /**
@@ -43,9 +44,8 @@ export class PlayerService {
    * @param name - player name to be removed from the server
    */
   deletePlayer(name: string): Observable<Player> {
-    const url = `${this.playersUrl}/${name}`;
-
-    return this.http.delete<Player>(url).pipe(catchError(this.handleError));
+    // TODO: #3 - implement method to allow deletion of the player
+    return null;
   }
 
   /**

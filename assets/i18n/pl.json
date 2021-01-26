@@ -8,9 +8,9 @@
     "HOME": {
         "RULES": "Zadania:",
         "ONE": "Zapoznaj się z kodem i komentarzami do kodu",
-        "TWO": "Zapoznaj się z dokumentacją REST API",
-        "THREE": "Dodaj odpowiednie zależności oraz przygotowany kod",
-        "FOUR": "Dodaj kod odpowiedzialny za usuwanie gracza gdy jest on nieaktywny",
+        "TWO": "Połącz frontend z backendem lokalnie",
+        "THREE": "Dodaj dwóch graczy do pokoju",
+        "FOUR": "Usuń gracza z pokoju",
         "FIVE": "Sprawdź, korzystając z poniższej strony, wprowadzone zmiany",
         "PLAYER_NAME": "Imię gracza",
         "INSTRUCTION": "To jest Twój identyfikator w grze",

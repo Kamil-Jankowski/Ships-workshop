@@ -18,7 +18,8 @@
         "JOIN": "Dodaj gracza",
         "FULL": "Pokój zajęty. Spróbuj ponownie później.",
         "NICKNAME_DUPLICATION": "Podany pseudonim jest zajęty! Spróbuj ponownie!",
-        "ERROR": "Błąd. Imię powinno się składać z samych liter."
+        "DUPLICATED_SESSION": "Sesja już istnieje",
+        "ERROR": "Coś poszło nie tak"
     },
 
     "WAITING_ROOM": {

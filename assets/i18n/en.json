@@ -18,7 +18,8 @@
         "JOIN": "Add player",
         "FULL": "Room is full, please try again later.",
         "NICKNAME_DUPLICATION": "Provided nickname is taken! Try again!",
-        "ERROR": "Error. The name should contain only letters."
+        "DUPLICATED_SESSION": "Session already exists",
+        "ERROR": "Something went wrong"
     },
 
     "WAITING_ROOM": {

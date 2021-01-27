@@ -596,9 +596,9 @@ Warsztat dostępny https://gitlab.com/choooobert/Spring-workshop/-/blob/workshop
 Nasza aplikacja:
 
 - https://ships-the-game.herokuapp.com
-- https://ships-room-service-backend.herokuapp.com
-- https://ships-random-placement-service.herokuapp.com
-- https://ships-game-service-backend.herokuapp.com
+- https://dashboard.heroku.com/apps/ships-room-service-backend
+- https://dashboard.heroku.com/apps/ships-random-placement-service
+- https://dashboard.heroku.com/apps/ships-game-service-backend
 
 == Część 4. Przygotowanie przestrzeni roboczej
 

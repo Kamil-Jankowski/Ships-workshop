@@ -589,7 +589,7 @@ Gotowe - gratulacje!
 
 === Spring-Boot
 
-Warsztat dostępny https://example.com[tutaj]
+Warsztat dostępny https://gitlab.com/choooobert/Spring-workshop/-/blob/workshop/warsztaty_instrukcja.adoc[tutaj]
 
 == Część 3. Prezentacja działania
 
@@ -621,8 +621,6 @@ git clone https://gitlab.com/Kamil-Jankowski/ships-workshop-backend.git
 .. część frontendowa
 .. część backendowa
 .. REST API
-+
-To jest czas na Twoje pytania
 +
 . Zadanie warsztatowe posiada ograniczone funkcjonalności w stosunku do całego projektu (tylko strona główna + poczekalnia)
 . Zapoznaj się z kodem i komentarzami w środku
